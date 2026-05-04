@@ -5,15 +5,29 @@ export default function App() {
       {/* HERO */}
 <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
 
-  <img
-    src="/img/logo.png"
-    alt="Background"
-    className="
-      absolute inset-0 w-full h-full
-      object-contain md:object-cover
-      object-center
+  {/* IMAGEM DESKTOP */}
+<img
+  src="/img/banner-desktop.png"
+  alt="Desktop"
+  className="
+    hidden md:block
+    absolute inset-0
+    w-full h-full
+    object-cover object-center
   "
-  />
+/>
+
+{/* IMAGEM MOBILE */}
+<img
+  src="/img/banner-mobile.png"
+  alt="Mobile"
+  className="
+    block md:hidden
+    absolute inset-0
+    w-full h-full
+    object-cover object-center
+  "
+/>
 
   <div className="absolute inset-0 bg-black/70"></div>
 
