@@ -3,42 +3,98 @@ export default function App() {
     <div className="min-h-screen bg-zinc-950 text-white">
       
       {/* HERO */}
-      <section
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('/img/logo.png')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/70"></div>
+<section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
 
-        <div className="relative z-10 text-center px-6 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-orange-400 mb-6">
-            Carvão Triuno
-          </h1>
+  <img
+    src="/img/logo.png"
+    alt="Background"
+    className="
+      absolute inset-0 w-full h-full
+      object-contain md:object-cover
+      object-center
+  "
+  />
 
-          <p className="text-xl font-bold text-zinc-500 mb-8">
-            Atendemos adegas, mercados, açougues e distribuidores com fornecimento contínuo para seu negócio não correr o risco de ficar sem carvão. Produto com alto rendimento, padrão de qualidade e entrega rápida para manter sua operação rodando sem falhas.
-          </p>
+  <div className="absolute inset-0 bg-black/70"></div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#produtos"
-              className="border border-white px-8 py-4 rounded-2xl text-lg font-bold hover:bg-white hover:text-black transition"
-              
-            >
-              Ver Produtos
-            </a>
+  <div className="relative z-10 text-center px-5 max-w-4xl">
 
-            <a
-              href="https://wa.me/5511999999999"
-              className="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-2xl text-lg font-bold transition"
-            >
-              Solicitar Orçamento no WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
+  <h1 className="
+    text-4xl
+    sm:text-5xl
+    md:text-7xl
+    font-extrabold
+    text-orange-400
+    mb-6
+  ">
+    Carvão Triuno
+  </h1>
+
+  <p className="
+    text-base
+    sm:text-lg
+    md:text-xl
+    font-semibold
+    text-zinc-300
+    mb-8
+    leading-relaxed
+    max-w-3xl
+    mx-auto
+  ">
+    Atendemos adegas, mercados, açougues e distribuidores com
+    fornecimento contínuo para seu negócio não correr o risco de
+    ficar sem carvão. Produto com alto rendimento, padrão de
+    qualidade e entrega rápida para manter sua operação rodando
+    sem falhas.
+  </p>
+
+  <div className="
+    flex
+    flex-col
+    sm:flex-row
+    gap-4
+    justify-center
+    items-center
+  ">
+
+    <a
+      href="#produtos"
+      className="
+        w-full
+        sm:w-auto
+        border border-white
+        px-8 py-4
+        rounded-2xl
+        text-lg
+        font-bold
+        hover:bg-white
+        hover:text-black
+        transition
+      "
+    >
+      Ver Produtos
+    </a>
+
+    <a
+      href="https://wa.me/5511999999999"
+      className="
+        w-full
+        sm:w-auto
+        bg-orange-500
+        hover:bg-orange-600
+        px-8 py-4
+        rounded-2xl
+        text-lg
+        font-bold
+        transition
+      "
+    >
+      Solicitar Orçamento no WhatsApp
+    </a>
+
+  </div>
+</div>
+</section>
 
       {/* SOBRE */}
       <section className="py-24 px-6 bg-zinc-900">
