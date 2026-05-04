@@ -169,7 +169,7 @@ export default function App() {
               },
               {
                 nome: "Carvão 10KG",
-                preco: "R$ 35,00",
+                preco: "R$ 42,00",
               },
             ].map((item, index) => (
               <div
