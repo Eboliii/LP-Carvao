@@ -2,41 +2,13 @@ import { useState } from "react";
 
 export default function App() {
 
-  const [quantidades, setQuantidades] = useState({
-    "Carvão 2KG": 1,
-    "Carvão 4KG": 1,
-    "Carvão 10KG": 1,
-    "Acendedor": 1,
-    "Repositor de Carvão": 1,
-  });
+  const gerarLinkWhatsApp = (produto) => {
 
-  const alterarQuantidade = (produto, valor) => {
-    setQuantidades((prev) => ({
-      ...prev,
-      [produto]: Math.max(1, prev[produto] + valor),
-    }));
+    const mensagem =
+      `Olá! Desejo fazer orçamento sobre ${produto}, poderia me ajudar?`;
+
+    return `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
   };
-
-  const gerarLinkWhatsApp = (produto, quantidade, total = null) => {
-
-  let mensagem = `Olá! Tenho interesse em comprar ${quantidade} unidade(s) de ${produto}.`;
-
-  if (total !== null) {
-    mensagem += ` O valor total fica em R$ ${total
-      .toFixed(2)
-      .replace(".", ",")}.`;
-  }
-
-  return `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
-};
-
-const gerarLinkComplementar = (produto, quantidade) => {
-
-  const mensagem =
-    `Olá! Gostaria de solicitar o preço de ${quantidade} unidade(s) de ${produto}, poderia me ajudar?`;
-
-  return `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
-};
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -127,7 +99,9 @@ const gerarLinkComplementar = (produto, quantidade) => {
             </a>
 
             <a
-              href="https://wa.me/5511999999999"
+              href={`https://wa.me/5511999999999?text=${encodeURIComponent(
+                "Olá! Gostaria de fazer um orçamento e ver os preços."
+              )}`}
               target="_blank"
               className="
                 w-full
@@ -150,6 +124,7 @@ const gerarLinkComplementar = (produto, quantidade) => {
 
       {/* SOBRE */}
       <section className="py-24 px-6 bg-zinc-900">
+
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
           <img
@@ -217,71 +192,50 @@ const gerarLinkComplementar = (produto, quantidade) => {
             {[
               {
                 nome: "Carvão 2KG",
-                preco: 8,
+                preco: "R$ 08,00",
+                imagem: "/img/carvao2kg.png",
               },
               {
                 nome: "Carvão 4KG",
-                preco: 18,
+                preco: "R$ 18,00",
+                imagem: "/img/carvao4kg.jpg",
               },
               {
                 nome: "Carvão 10KG",
-                preco: 42,
+                preco: "R$ 42,00",
+                imagem: "/img/carvao10kg.png",
               },
-            ].map((item, index) => {
+            ].map((item, index) => (
 
-              const quantidade = quantidades[item.nome];
-              const total = item.preco * quantidade;
+              <div
+                key={index}
+                className="bg-zinc-900 rounded-3xl p-8 shadow-xl hover:scale-105 transition"
+              >
 
-              return (
-                <div
-                  key={index}
-                  className="bg-zinc-900 rounded-3xl p-8 shadow-xl hover:scale-105 transition"
+                <img
+                  src={item.imagem}
+                  alt={item.nome}
+                  className="w-full h-46 object-contain rounded-2xl mb-6"
+                />
+
+                <h3 className="text-2xl font-bold mb-4">
+                  {item.nome}
+                </h3>
+
+                <p className="text-4xl font-bold text-orange-400 mb-6">
+                  {item.preco}
+                </p>
+
+                <a
+                  href={gerarLinkWhatsApp(item.nome)}
+                  target="_blank"
+                  className="block text-center w-full bg-orange-500 hover:bg-orange-600 py-3 rounded-2xl font-bold transition"
                 >
+                  Fazer Cotação
+                </a>
 
-                  <h3 className="text-2xl font-bold mb-4">
-                    {item.nome}
-                  </h3>
-
-                  <p className="text-4xl font-bold text-orange-400 mb-6">
-                    R$ {total.toFixed(2).replace(".", ",")}
-                  </p>
-
-                  <div className="flex items-center justify-center gap-4 mb-6">
-
-                    <button
-                      onClick={() => alterarQuantidade(item.nome, -1)}
-                      className="bg-zinc-700 w-10 h-10 rounded-xl text-xl font-bold"
-                    >
-                      -
-                    </button>
-
-                    <span className="text-2xl font-bold">
-                      {quantidade}
-                    </span>
-
-                    <button
-                      onClick={() => alterarQuantidade(item.nome, 1)}
-                      className="bg-zinc-700 w-10 h-10 rounded-xl text-xl font-bold"
-                    >
-                      +
-                    </button>
-
-                  </div>
-
-                  <a
-                    href={gerarLinkWhatsApp(
-                      item.nome,
-                      quantidade,
-                      total
-                    )}
-                    target="_blank"
-                    className="block text-center w-full bg-orange-500 hover:bg-orange-600 py-3 rounded-2xl font-bold transition">
-                    Comprar no WhatsApp
-                  </a>
-
-                </div>
-              );
-            })}
+              </div>
+            ))}
 
           </div>
         </div>
@@ -304,97 +258,50 @@ const gerarLinkComplementar = (produto, quantidade) => {
 
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
 
-            {/* ACENDEDOR */}
-            <div className="bg-zinc-800 rounded-3xl p-6 shadow-xl hover:scale-105 transition">
+            {[
+              {
+                nome: "Acendedor",
+                imagem: "/img/acendedor.jpg",
+                descricao: "Acenda seu carvão com rapidez e praticidade.",
+              },
+              {
+                nome: "Repositor de Carvão",
+                imagem: "/img/repositor.jpg",
+                descricao: "Mantenha o fogo sempre forte durante o churrasco.",
+              },
+            ].map((item, index) => (
 
-              <h3 className="text-2xl font-bold mb-4 text-orange-400">
-                Acendedor
-              </h3>
+              <div
+                key={index}
+                className="bg-zinc-800 rounded-3xl p-6 shadow-xl hover:scale-105 transition"
+              >
 
-              <p className="text-zinc-300 mb-6">
-                Acenda seu carvão com rapidez e praticidade.
-              </p>
+                <img
+                  src={item.imagem}
+                  alt={item.nome}
+                  className="w-full h-46 object-contain rounded-2xl mb-6"
+                />
 
-              <div className="flex items-center justify-center gap-4 mb-6">
+                <h3 className="text-2xl font-bold mb-4 text-orange-400">
+                  {item.nome}
+                </h3>
 
-                <button
-                  onClick={() => alterarQuantidade("Acendedor", -1)}
-                  className="bg-zinc-700 w-10 h-10 rounded-xl text-xl font-bold"
+                <p className="text-zinc-300 mb-6">
+                  {item.descricao}
+                </p>
+
+                <a
+                  href={gerarLinkWhatsApp(item.nome)}
+                  target="_blank"
+                  className="block text-center w-full bg-orange-500 hover:bg-orange-600 py-3 rounded-2xl font-bold transition"
                 >
-                  -
-                </button>
-
-                <span className="text-2xl font-bold">
-                  {quantidades["Acendedor"]}
-                </span>
-
-                <button
-                  onClick={() => alterarQuantidade("Acendedor", 1)}
-                  className="bg-zinc-700 w-10 h-10 rounded-xl text-xl font-bold"
-                >
-                  +
-                </button>
+                  Fazer Cotação
+                </a>
 
               </div>
-
-              <a
-                href={gerarLinkComplementar(
-                  "Acendedor",
-                  quantidades["Acendedor"]
-                )}
-                target="_blank"
-                className="block text-center w-full bg-orange-500 hover:bg-orange-600 py-3 rounded-2xl font-bold transition">
-                Fazer Cotação
-              </a>
-
-            </div>
-
-            {/* REPOSITOR */}
-            <div className="bg-zinc-800 rounded-3xl p-6 shadow-xl hover:scale-105 transition">
-
-              <h3 className="text-2xl font-bold mb-4 text-orange-400">
-                Repositor de Carvão
-              </h3>
-
-              <p className="text-zinc-300 mb-6">
-                Mantenha o fogo sempre forte durante o churrasco.
-              </p>
-
-              <div className="flex items-center justify-center gap-4 mb-6">
-
-                <button
-                  onClick={() => alterarQuantidade("Repositor de Carvão", -1)}
-                  className="bg-zinc-700 w-10 h-10 rounded-xl text-xl font-bold"
-                >
-                  -
-                </button>
-
-                <span className="text-2xl font-bold">
-                  {quantidades["Repositor de Carvão"]}
-                </span>
-
-                <button
-                  onClick={() => alterarQuantidade("Repositor de Carvão", 1)}
-                  className="bg-zinc-700 w-10 h-10 rounded-xl text-xl font-bold"
-                >
-                  +
-                </button>
-
-              </div>
-
-              <a
-                href={gerarLinkComplementar(
-                  "Repositor de Carvão",
-                  quantidades["Repositor de Carvão"]
-                )}
-                target="_blank"
-                className="block text-center w-full bg-orange-500 hover:bg-orange-600 py-3 rounded-2xl font-bold transition">
-                Fazer Cotação
-              </a>
-
-            </div>
+            ))}
 
           </div>
         </div>
@@ -463,7 +370,8 @@ const gerarLinkComplementar = (produto, quantidade) => {
             "Olá! Gostaria de fazer um orçamento e ver os preços."
           )}`}
           target="_blank"
-          className="bg-black text-white px-10 py-5 rounded-2xl text-xl font-bold inline-block hover:scale-105 transition">
+          className="bg-black text-white px-10 py-5 rounded-2xl text-xl font-bold inline-block hover:scale-105 transition"
+        >
           Solicitar Orçamento
         </a>
 
