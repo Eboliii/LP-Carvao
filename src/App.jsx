@@ -7,7 +7,7 @@ export default function App() {
     const mensagem =
       `Olá! Desejo fazer orçamento sobre ${produto}, poderia me ajudar?`;
 
-    return `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
+    return `https://wa.me/5511922270377?text=${encodeURIComponent(mensagem)}`;
   };
 
   return (
@@ -99,7 +99,7 @@ export default function App() {
             </a>
 
             <a
-              href={`https://wa.me/5511999999999?text=${encodeURIComponent(
+              href={`https://wa.me/5511922270377?text=${encodeURIComponent(
                 "Olá! Gostaria de fazer um orçamento e ver os preços."
               )}`}
               target="_blank"
@@ -366,7 +366,7 @@ export default function App() {
         </p>
 
         <a
-          href={`https://wa.me/5511999999999?text=${encodeURIComponent(
+          href={`https://wa.me/5511922270377?text=${encodeURIComponent(
             "Olá! Gostaria de fazer um orçamento e ver os preços."
           )}`}
           target="_blank"
